@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/storage"
-	mockdb "github.com/Slimo300/MicroservicesChatApp/backend/message-service/database/mock"
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/handlers"
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/models"
+	mockdb "github.com/Slimo300/chat-messageservice/internal/database/mock"
+	"github.com/Slimo300/chat-messageservice/internal/handlers"
+	"github.com/Slimo300/chat-messageservice/internal/models"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/mock"

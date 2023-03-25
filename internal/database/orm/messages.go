@@ -4,7 +4,7 @@ import (
 	"errors"
 
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/apperrors"
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/models"
+	"github.com/Slimo300/chat-messageservice/internal/models"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

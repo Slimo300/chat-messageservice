@@ -4,11 +4,11 @@ FROM golang:1.19-buster AS build
 
 WORKDIR /app
 
-COPY backend/message-service/go.mod ./
-COPY backend/message-service/go.sum ./
+COPY go.mod ./
+COPY go.sum ./
 RUN go mod download
 
-COPY  backend/message-service/. ./
+COPY  . ./
 RUN CGO_ENABLED=0 go build -o messageservice
 
 FROM gcr.io/distroless/base-debian10

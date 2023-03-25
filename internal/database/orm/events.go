@@ -2,7 +2,7 @@ package orm
 
 import (
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/events"
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/models"
+	"github.com/Slimo300/chat-messageservice/internal/models"
 )
 
 func (db *Database) NewMember(event events.MemberCreatedEvent) error {

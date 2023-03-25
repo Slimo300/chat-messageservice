@@ -1,7 +1,7 @@
 package orm
 
 import (
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/models"
+	"github.com/Slimo300/chat-messageservice/internal/models"
 	"github.com/google/uuid"
 )
 

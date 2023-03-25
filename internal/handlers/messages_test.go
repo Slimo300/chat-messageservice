@@ -9,9 +9,9 @@ import (
 
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/apperrors"
 	mockqueue "github.com/Slimo300/MicroservicesChatApp/backend/lib/msgqueue/mock"
-	mockdb "github.com/Slimo300/MicroservicesChatApp/backend/message-service/database/mock"
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/handlers"
-	"github.com/Slimo300/MicroservicesChatApp/backend/message-service/models"
+	mockdb "github.com/Slimo300/chat-messageservice/internal/database/mock"
+	"github.com/Slimo300/chat-messageservice/internal/handlers"
+	"github.com/Slimo300/chat-messageservice/internal/models"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 
