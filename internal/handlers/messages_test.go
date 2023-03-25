@@ -80,7 +80,7 @@ func (s *MessageTestSuite) SetupSuite() {
 	)
 }
 
-func (s MessageTestSuite) TestGetGroupMessages() {
+func (s *MessageTestSuite) TestGetGroupMessages() {
 	gin.SetMode(gin.TestMode)
 
 	testCases := []struct {
@@ -140,11 +140,11 @@ func (s MessageTestSuite) TestGetGroupMessages() {
 			var respBody interface{}
 			if tC.returnVal {
 				groups := []models.Message{}
-				json.NewDecoder(response.Body).Decode(&groups)
+				_ = json.NewDecoder(response.Body).Decode(&groups)
 				respBody = groups
 			} else {
 				var msg gin.H
-				json.NewDecoder(response.Body).Decode(&msg)
+				_ = json.NewDecoder(response.Body).Decode(&msg)
 				respBody = msg
 			}
 

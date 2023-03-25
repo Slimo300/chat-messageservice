@@ -49,7 +49,7 @@ func (s *PresignedUrlSuite) SetupSuite() {
 
 }
 
-func (s PresignedUrlSuite) TestGetPresignedUrl() {
+func (s *PresignedUrlSuite) TestGetPresignedUrl() {
 	gin.SetMode(gin.TestMode)
 
 	testCases := []struct {
@@ -127,7 +127,9 @@ func (s PresignedUrlSuite) TestGetPresignedUrl() {
 			var respBody interface{}
 			if tC.returnVal {
 				var msg gin.H
-				json.NewDecoder(response.Body).Decode(&msg)
+				if err := json.NewDecoder(response.Body).Decode(&msg); err != nil {
+					s.Fail(err.Error())
+				}
 
 				var urls []string
 				for _, url := range msg["requests"].([]interface{}) {
@@ -137,7 +139,9 @@ func (s PresignedUrlSuite) TestGetPresignedUrl() {
 				respBody = urls
 			} else {
 				var msg gin.H
-				json.NewDecoder(response.Body).Decode(&msg)
+				if err := json.NewDecoder(response.Body).Decode(&msg); err != nil {
+					s.Fail(err.Error())
+				}
 				respBody = msg
 			}
 

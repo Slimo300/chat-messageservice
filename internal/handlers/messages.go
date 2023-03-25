@@ -79,7 +79,7 @@ func (s *Server) DeleteMessageForEveryone(c *gin.Context) {
 		}
 	}()
 
-	s.Emitter.Emit(events.MessageDeletedEvent{
+	_ = s.Emitter.Emit(events.MessageDeletedEvent{
 		ID:      msg.ID,
 		GroupID: msg.GroupID,
 	})
