@@ -15,14 +15,16 @@ import (
 	"github.com/Shopify/sarama"
 	"github.com/Slimo300/chat-messageservice/internal/config"
 	"github.com/Slimo300/chat-messageservice/internal/database/orm"
+	"github.com/Slimo300/chat-messageservice/internal/eventprocessor"
 	"github.com/Slimo300/chat-messageservice/internal/handlers"
 	"github.com/Slimo300/chat-messageservice/internal/routes"
+	"github.com/Slimo300/chat-messageservice/internal/storage"
+
 	tokens "github.com/Slimo300/chat-tokenservice/pkg/client"
 
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/events"
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/msgqueue"
 	"github.com/Slimo300/MicroservicesChatApp/backend/lib/msgqueue/kafka"
-	"github.com/Slimo300/MicroservicesChatApp/backend/lib/storage"
 )
 
 func main() {
@@ -38,7 +40,7 @@ func main() {
 	}
 
 	brokerConf := sarama.NewConfig()
-	brokerConf.ClientID = "messagesService"
+	brokerConf.ClientID = "messageService"
 	brokerConf.Version = sarama.V2_3_0_0
 	brokerConf.Producer.Return.Successes = true
 	client, err := sarama.NewClient([]string{conf.BrokerAddress}, brokerConf)
@@ -74,6 +76,9 @@ func main() {
 		log.Fatalf("Couldn't establish s3 session: %v", err)
 	}
 
+	eventProcessor := eventprocessor.NewEventProcessor(listener, db, storage)
+	go eventProcessor.ProcessEvents()
+
 	server := &handlers.Server{
 		DB:          db,
 		TokenClient: tokenClient,
@@ -82,7 +87,6 @@ func main() {
 		Storage:     storage,
 	}
 	handler := routes.Setup(server, conf.Origin)
-	go server.RunListener()
 
 	httpServer := &http.Server{
 		Handler: handler,

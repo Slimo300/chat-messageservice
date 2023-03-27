@@ -8,10 +8,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Slimo300/MicroservicesChatApp/backend/lib/storage"
 	mockdb "github.com/Slimo300/chat-messageservice/internal/database/mock"
 	"github.com/Slimo300/chat-messageservice/internal/handlers"
 	"github.com/Slimo300/chat-messageservice/internal/models"
+	"github.com/Slimo300/chat-messageservice/internal/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/mock"
