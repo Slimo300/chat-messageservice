@@ -42,7 +42,6 @@ func (s *PresignedUrlSuite) SetupSuite() {
 		mockDB,
 		nil,
 		nil,
-		nil,
 		mockStorage,
 	)
 	log.Println(s.server)

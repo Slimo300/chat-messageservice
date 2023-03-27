@@ -11,16 +11,14 @@ type Server struct {
 	DB          database.DBLayer
 	TokenClient tokens.TokenClient
 	Emitter     msgqueue.EventEmiter
-	Listener    msgqueue.EventListener
 	Storage     storage.StorageLayer
 }
 
-func NewServer(db database.DBLayer, tokenClient tokens.TokenClient, emitter msgqueue.EventEmiter, listener msgqueue.EventListener, storage storage.StorageLayer) *Server {
+func NewServer(db database.DBLayer, tokenClient tokens.TokenClient, emitter msgqueue.EventEmiter, storage storage.StorageLayer) *Server {
 	return &Server{
 		DB:          db,
 		TokenClient: tokenClient,
 		Emitter:     emitter,
-		Listener:    listener,
 		Storage:     storage,
 	}
 }
